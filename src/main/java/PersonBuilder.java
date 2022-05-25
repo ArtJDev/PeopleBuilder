@@ -1,8 +1,8 @@
 public class PersonBuilder {
-    public String name;
-    public String surname;
-    public int age;
-    public String address;
+    private String name;
+    private String surname;
+    private int age;
+    private String address;
 
     public PersonBuilder setName(String name) {
         this.name = name;
@@ -28,11 +28,14 @@ public class PersonBuilder {
         return this;
     }
 
+    public boolean hasName(String name, String surname) {
+        return (name != null && surname != null);
+    }
+
     public Person build() {
-        Person person = new Person(name, surname, age);
-        if (!person.hasName()) {
+        if (!hasName(name, surname)) {
             throw new IllegalStateException("Не хватает имени или фамилии");
         }
-        return person;
+        return new Person(name, surname, age);
     }
 }

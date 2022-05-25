@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class Person {
-    protected final String name;
-    protected final String surname;
+    private final String name;
+    private final String surname;
     private int age;
     private String address;
 
@@ -23,10 +23,6 @@ public class Person {
 
     public boolean hasAddress() {
         return address != null;
-    }
-
-    public boolean hasName() {
-        return (name != null && surname != null);
     }
 
     public String getName() {
@@ -56,8 +52,7 @@ public class Person {
     }
 
     public PersonBuilder newChildBuilder() {
-        Person person = new Person(name, surname);
-        return new PersonBuilder().setSurname(person.getSurname());
+        return new PersonBuilder().setSurname(this.surname);
     }
 
     @Override
